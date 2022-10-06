@@ -14,14 +14,13 @@
 
 tiny32_v3 mcu; //define object
 
-uint8_t id = 1; //Address of WATER-FLOW-METER sensor module, You can change here if it differance
 
 void setup()
 {
   Serial.begin(115200);
   Serial.printf("\r\n**** tiny32_ENenergic_PowerMeter_searchAddress[1-247] ****\r\n");
   mcu.library_version();
-  mcu.WATER_FLOW_METER_begin(RXD2,TXD2);
+  mcu.ENenergic_begin(RXD2,TXD2);
   mcu.buzzer_beep(2); //buzzer 2 beeps
 }
 
