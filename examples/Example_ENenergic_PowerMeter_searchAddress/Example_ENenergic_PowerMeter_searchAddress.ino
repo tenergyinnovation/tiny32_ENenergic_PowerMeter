@@ -1,5 +1,5 @@
 /***********************************************************************
- * Project      :     tiny32_ENenergic_PowerMeter_searchAddress
+ * Project      :     ENenergic_PowerMeter_searchAddress
  * Description  :     Search Address from Nenergic PowerMeter
  * Hardware     :     tiny32         
  * Author       :     Tenergy Innovation Co., Ltd.
@@ -19,7 +19,7 @@ uint8_t id = 1; //Address of WATER-FLOW-METER sensor module, You can change here
 void setup()
 {
   Serial.begin(115200);
-  Serial.printf("\r\n**** tiny32_ENenergic_PowerMeter_searchAddress[1-247] ****\r\n");
+  Serial.printf("\r\n**** ENenergic_PowerMeter_searchAddress[1-247] ****\r\n");
   mcu.library_version();
   mcu.WATER_FLOW_METER_begin(RXD2,TXD2);
   mcu.buzzer_beep(2); //buzzer 2 beeps
@@ -29,7 +29,7 @@ void loop()
 {
    int8_t _id;
   
-  _id = mcu.tiny32_ENenergic_searchAddress();
+  _id = mcu.ENenergic_searchAddress();
 
   /* check result status */
   if(_id != -1)

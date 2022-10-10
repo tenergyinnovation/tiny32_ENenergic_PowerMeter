@@ -1,6 +1,6 @@
 /***********************************************************************
- * Project      :     Example_tiny32_ENenergic_PowerMeter_Current_L
- * Description  :     get Current L1,Current L2,Current L3
+ * Project      :     Example_ENenergic_PhaseCurrent_Angle
+ * Description  :     get ActivePower L1-N, ActivePower L2-N, ActivePower L3-N
  * Hardware     :     tiny32
  * Author       :     Tenergy Innovation Co., Ltd.
  * Date         :     14/07/2022
@@ -20,25 +20,26 @@ uint8_t id = 1; // Modbus Address of ENenergic Power Meter
 void setup()
 {
   Serial.begin(115200);
-  Serial.printf("\r\n**** Example_tiny32_ENenergic_PowerMeter_Current_L ****\r\n");
+  Serial.printf("\r\n**** Example_ENenergic_PhaseCurrent_Angle ****\r\n");
   mcu.library_version();
-  mcu.tiny32_ENenergic_begin(RXD2, TXD2);
+  mcu.ENenergic_begin(RXD2, TXD2);
   mcu.buzzer_beep(2); // buzzer 2 beeps
 }
 
 void loop()
 {
 
-  if (mcu.tiny32_ENenergic_Current_L(id, L1, L2, L3))
+  if (mcu.ENenergic_PhaseCurrent_Angle(id, L1, L2, L3))
   {
-    Serial.printf("Current L1 = %.4f A\r\n", L1);
-    Serial.printf("Current L2 = %.4f A\r\n", L2);
-    Serial.printf("Current L3 = %.4f A\r\n", L3);
+    Serial.printf("Phase Current L1 = %.4f Degree\r\n", L1);
+    Serial.printf("Phase Current L2 = %.4f Degree\r\n", L2);
+    Serial.printf("Phase Current L3 = %.4f Degree\r\n", L3);
   }
   else
   {
     Serial.println("Error: can't get value");
   }
+
   Serial.println("------------------");
   vTaskDelay(1000);
 }

@@ -1,5 +1,5 @@
 /***********************************************************************
- * Project      :     tiny32_ENenergic_PowerMeter_setAddress
+ * Project      :     ENenergic_PowerMeter_setAddress
  * Description  :     set Address for ENenergic_PowerMeter [1-247]
  * Hardware     :     tiny32
  * Author       :     Tenergy Innovation Co., Ltd.
@@ -20,9 +20,9 @@ uint8_t new_id = 2; // new address of ENenergic_PowerMeter, You can change here 
 void setup()
 {
   Serial.begin(115200);
-  Serial.printf("\r\n**** tiny32_ENenergic_PowerMeter_setAddress[1-247] ****\r\n");
+  Serial.printf("\r\n**** ENenergic_PowerMeter_setAddress[1-247] ****\r\n");
   mcu.library_version();
-  mcu.tiny32_ENenergic_begin(RXD2, TXD2);
+  mcu.ENenergic_begin(RXD2, TXD2);
   mcu.buzzer_beep(2); // buzzer 2 beeps
   Serial.print("Please press SW1 or SW2: ");
 }
@@ -39,7 +39,7 @@ void loop()
     Serial.printf("Info: New ID: %d\r\n", new_id);
 
     int8_t _response_id;
-    _response_id = mcu.tiny32_ENenergic_setAddress(id, new_id);
+    _response_id = mcu.ENenergic_setAddress(id, new_id);
 
     /* check status */
     if (_response_id != -1)

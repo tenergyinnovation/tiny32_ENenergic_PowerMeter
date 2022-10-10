@@ -1,6 +1,6 @@
 /***********************************************************************
- * Project      :     Example_tiny32_ENenergic_PhaseVolt_Angle
- * Description  :     get ActivePower L1-N, ActivePower L2-N, ActivePower L3-N
+ * Project      :     Example_ENenergic_PowerMeter_Volt_L-L
+ * Description  :     get Voltage L1-L2, Voltage L2-L3, Voltage L3-L1
  * Hardware     :     tiny32
  * Author       :     Tenergy Innovation Co., Ltd.
  * Date         :     14/07/2022
@@ -14,32 +14,31 @@
 
 tiny32_v3 mcu; // define object
 
-float L1, L2, L3;
+float L1_L2, L2_L3, L3_L1;
 uint8_t id = 1; // Modbus Address of ENenergic Power Meter
 
 void setup()
 {
   Serial.begin(115200);
-  Serial.printf("\r\n**** Example_tiny32_ENenergic_PhaseVolt_Angle ****\r\n");
+  Serial.printf("\r\n**** Example_ENenergic_PowerMeter_Volt_L-L ****\r\n");
   mcu.library_version();
-  mcu.tiny32_ENenergic_begin(RXD2, TXD2);
+  mcu.ENenergic_begin(RXD2, TXD2);
   mcu.buzzer_beep(2); // buzzer 2 beeps
 }
 
 void loop()
 {
 
-  if (mcu.tiny32_ENenergic_PhaseVolt_Angle(id, L1, L2, L3))
+  if (mcu.ENenergic_Volt_L_L(id, L1_L2, L2_L3, L3_L1))
   {
-    Serial.printf("Phase Voltage L1 = %.4f Degree\r\n", L1);
-    Serial.printf("Phase Voltage L2 = %.4f Degree\r\n", L2);
-    Serial.printf("Phase Voltage L3 = %.4f Degree\r\n", L3);
+    Serial.printf("Voltage L1-L2 = %.4f V\r\n", L1_L2);
+    Serial.printf("Voltage L2-L3 = %.4f V\r\n", L2_L3);
+    Serial.printf("Voltage L3-L1 = %.4f V\r\n", L3_L1);
   }
   else
   {
     Serial.println("Error: can't get value");
   }
-
   Serial.println("------------------");
   vTaskDelay(1000);
 }

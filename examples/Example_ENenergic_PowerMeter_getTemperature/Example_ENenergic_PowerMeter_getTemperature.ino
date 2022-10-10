@@ -1,5 +1,5 @@
 /***********************************************************************
- * Project      :     tiny32_ENenergic_getTemperature
+ * Project      :     ENenergic_getTemperature
  * Description  :     get internal temperature from ENenergic Powermeter
  * Hardware     :     tiny32
  * Author       :     Tenergy Innovation Co., Ltd.
@@ -20,16 +20,16 @@ uint8_t id = 1; // Modbus Address of ENenergic Power Meter
 void setup()
 {
   Serial.begin(115200);
-  Serial.printf("\r\n**** tiny32_ENenergic_getTemperature ****\r\n");
+  Serial.printf("\r\n**** ENenergic_getTemperature ****\r\n");
   mcu.library_version();
-  mcu.tiny32_ENenergic_begin(RXD2, TXD2);
+  mcu.ENenergic_begin(RXD2, TXD2);
   mcu.buzzer_beep(2); // buzzer 2 beeps
 }
 
 void loop()
 {
 
-  temperature = mcu.tiny32_ENenergic_getTemperature(id);
+  temperature = mcu.ENenergic_getTemperature(id);
   if (temperature != -1)
   {
     Serial.printf("ENenergic Temperature = %.4f C\r\n", temperature);
